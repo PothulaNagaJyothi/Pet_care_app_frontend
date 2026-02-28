@@ -81,10 +81,10 @@ To ensure code quality, maintainability, and a premium UI/UX, the following arch
    The application will be available at `http://localhost:5173`.
 
 ## 🌐 Repositories & Deployment
-- **Frontend GitHub Repository:** `https://github.com/PothulaNagaJyothi/Pet_care_app_frontend`
-- **Backend GitHub Repository:** `https://github.com/PothulaNagaJyothi/Pet_care_app_backend`
-- **Frontend Deployment (Netlify):** `[Insert Netlify Link Here]`
-- **Backend API Link (Render):** `https://pet-care-app-backend.onrender.com`
+- **Frontend GitHub Repository:** [https://github.com/PothulaNagaJyothi/Pet_care_app_frontend](https://github.com/PothulaNagaJyothi/Pet_care_app_frontend)
+- **Backend GitHub Repository:** [https://github.com/PothulaNagaJyothi/Pet_care_app_backend](https://github.com/PothulaNagaJyothi/Pet_care_app_backend)
+- **Frontend Deployment (Netlify):** [https://pet-care-management-app.netlify.app/](https://pet-care-management-app.netlify.app/)
+- **Backend API Link (Render):** [https://pet-care-app-backend.onrender.com](https://pet-care-app-backend.onrender.com)
 
 ## 🔐 Login Credentials (Test Account)
 If applicable, use the following credentials to explore the dashboard immediately:
