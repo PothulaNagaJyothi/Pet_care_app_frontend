@@ -102,4 +102,4 @@ If applicable, use the following credentials to explore the dashboard immediatel
   ![Pet Profiles](./src/assets/Screenshot%202026-02-28%20210858.png)
 
 ## 🎥 Video Walkthrough Link
-- **Demonstration Video:** `[Insert YouTube/Drive Link Here]`
+- **Demonstration Video:** [Watch on Google Drive](https://drive.google.com/file/d/1l5FmUNnTv22EFuAT70-dameFO0lET2a5/view?usp=sharing)
