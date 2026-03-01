@@ -177,7 +177,7 @@ function Vaccinations() {
                       {vac.status === "pending" && isOverdue ? "overdue" : vac.status}
                     </span>
 
-                    <div className="flex gap-2 ml-auto">
+                    <div className="flex flex-wrap gap-2 w-full sm:w-auto sm:ml-auto mt-2 sm:mt-0">
                       <Button
                         variant="secondary"
                         onClick={() => openEditModal(vac)}

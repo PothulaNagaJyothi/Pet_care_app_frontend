@@ -261,7 +261,7 @@ function Pets() {
                   </p>
                 </div>
 
-                <div className="flex gap-2 pt-6 border-t border-slate-100 dark:border-slate-700/50">
+                <div className="flex flex-wrap sm:flex-nowrap gap-2 pt-6 border-t border-slate-100 dark:border-slate-700/50">
                   <Button variant="secondary" onClick={() => openEditModal(pet)} className="flex-1 px-3 py-2.5 text-sm">
                     Edit
                   </Button>

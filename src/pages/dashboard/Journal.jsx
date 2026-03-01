@@ -133,7 +133,7 @@ function Journal() {
                   </p>
                 </div>
 
-                <div className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0 justify-end">
+                <div className="flex flex-wrap gap-2 w-full sm:w-auto mt-2 sm:mt-0 justify-end">
                   <Button
                     variant="secondary"
                     onClick={() => openEditModal(entry)}

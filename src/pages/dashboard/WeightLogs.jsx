@@ -160,7 +160,7 @@ function WeightLogs() {
 
           <form
             onSubmit={handleAdd}
-            className="flex gap-4 items-center"
+            className="flex flex-col sm:flex-row gap-4 sm:items-center w-full"
           >
             <input
               type="number"
