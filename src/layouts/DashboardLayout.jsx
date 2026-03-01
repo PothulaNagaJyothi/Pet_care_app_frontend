@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
+import NotificationBell from "../components/ui/NotificationBell";
 
 function DashboardLayout() {
   const { user, signOut } = useAuth();
@@ -161,6 +162,7 @@ function DashboardLayout() {
 
           {/* Profile & Theme Section */}
           <div className="flex items-center gap-4 md:gap-6">
+            <NotificationBell />
             <button
               onClick={toggleTheme}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
