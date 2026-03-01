@@ -136,11 +136,11 @@ function EmergencyVets() {
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-2 mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+                <div className="flex flex-wrap justify-end gap-2 mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/50">
                   <Button
                     variant="secondary"
                     onClick={() => openEditModal(vet)}
-                    className="py-1.5 px-4 text-sm"
+                    className="py-1.5 px-4 text-sm flex-1 sm:flex-none"
                   >
                     Edit
                   </Button>
@@ -148,7 +148,7 @@ function EmergencyVets() {
                   <Button
                     variant="danger"
                     onClick={() => setDeleteTarget(vet)}
-                    className="py-1.5 px-4 text-sm"
+                    className="py-1.5 px-4 text-sm flex-1 sm:flex-none"
                   >
                     Delete
                   </Button>

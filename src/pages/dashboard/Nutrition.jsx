@@ -301,37 +301,37 @@ const Nutrition = () => {
                                 logs.map((log) => (
                                     <div
                                         key={log.id}
-                                        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl flex items-center justify-between group hover:border-brand-300 dark:hover:border-brand-700 transition duration-300 shadow-sm hover:shadow-md"
+                                        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group hover:border-brand-300 dark:hover:border-brand-700 transition duration-300 shadow-sm hover:shadow-md"
                                     >
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center border border-slate-100 dark:border-slate-700 group-hover:scale-105 transition-transform duration-300">
+                                        <div className="flex items-center gap-4 w-full sm:w-auto">
+                                            <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center border border-slate-100 dark:border-slate-700 group-hover:scale-105 transition-transform duration-300 shrink-0">
                                                 {getMealIcon(log.meal_type)}
                                             </div>
 
-                                            <div>
-                                                <div className="flex items-center gap-2">
-                                                    <h3 className="font-bold text-slate-900 dark:text-white text-lg">{log.food_name}</h3>
-                                                    <span className="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex items-center gap-2 flex-wrap">
+                                                    <h3 className="font-bold text-slate-900 dark:text-white text-lg truncate">{log.food_name}</h3>
+                                                    <span className="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 whitespace-nowrap">
                                                         {log.meal_type}
                                                     </span>
                                                 </div>
-                                                <p className="text-sm font-medium text-slate-500 dark:text-slate-400 flex items-center gap-3 mt-1">
+                                                <p className="text-sm font-medium text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
                                                     <span>{log.amount}</span>
                                                     {log.calories && (
                                                         <>
-                                                            <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                                                            <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600 hidden sm:block"></span>
                                                             <span className="text-orange-600 dark:text-orange-400 font-semibold">{log.calories} kcal</span>
                                                         </>
                                                     )}
-                                                    <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                                                    <span>{new Date(log.date).toLocaleDateString()}</span>
+                                                    <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600 hidden sm:block"></span>
+                                                    <span className="whitespace-nowrap">{new Date(log.date).toLocaleDateString()}</span>
                                                 </p>
                                             </div>
                                         </div>
 
                                         <button
                                             onClick={() => handleDelete(log.id)}
-                                            className="text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-500/10 transition opacity-0 group-hover:opacity-100 focus:opacity-100"
+                                            className="text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-500/10 transition opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100 self-end sm:self-auto shrink-0"
                                             aria-label="Delete Nutrition Log"
                                         >
                                             <Trash2 className="w-5 h-5" />
