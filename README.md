@@ -6,10 +6,13 @@ PetCare is a comprehensive full-stack application designed for modern pet parent
 ## ✨ Features
 - **User Authentication:** Secure sign-up and login securely powered by Supabase Auth mechanism.
 - **Smart Dashboard:** Aggregated daily insights, top priority alerts (e.g., overdue medications), and a calculated Pet Health Score.
+- **AI Virtual Vet Assistant 🤖:** Integrated AI to answer pet health, diet, and training questions (powered by Google Gemini).
+- **Notification Center 🔔:** Real-time dropdown alerts for new appointments and logged medications.
 - **Health Tracking Hub:** 
   - Manage multiple pet profiles.
   - Track **Vaccinations** and **Medications** with due dates and statuses.
   - Log and track **Weight History** with dynamic charts.
+  - **PDF Medical Reports:** Generate and download comprehensive medical histories for your pets.
 - **Daily Operations:** 
   - Schedule **Appointments** (Vet, Grooming, etc.).
   - Check off **Daily Routines** (Walking, Feeding, etc.).
@@ -92,14 +95,17 @@ If applicable, use the following credentials to explore the dashboard immediatel
 - **Password:** `password123`
 
 ## 📸 Screenshots
-- **Dark Mode Dashboard**
-  ![Dark Mode Dashboard](./src/assets/Screenshot%202026-02-28%20210809.png)
+- **Light Mode Landing Page**
+  ![Light Mode Landing Page](./src/assets/Light%20mode%20landing%20page.png)
+
+- **Dark Mode Landing Page**
+  ![Dark Mode Landing Page](./src/assets/Dark%20mode%20landing%20page.png)
   
-- **Light Mode Dashboard**
-  ![Light Mode Dashboard](./src/assets/Screenshot%202026-02-28%20210835.png)
+- **Dashboard Overview**
+  ![Dashboard](./src/assets/Dashboard.png)
   
-- **Pet Profiles**
-  ![Pet Profiles](./src/assets/Screenshot%202026-02-28%20210858.png)
+- **Mobile Responsive View**
+  ![Mobile View](./src/assets/Mobile%20View.png)
 
 ## 🎥 Video Walkthrough Link
 - **Demonstration Video:** [Watch on Google Drive](https://drive.google.com/file/d/1eMggSyv_z6qB3FXJJXAwbMMK6Sg2Towi/view?usp=sharing)
