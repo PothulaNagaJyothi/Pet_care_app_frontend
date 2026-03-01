@@ -87,16 +87,16 @@ function AIAssistant() {
                         >
                             {/* Avatar */}
                             <div className={`w-10 h-10 rounded-full flex shrink-0 items-center justify-center shadow-sm ${msg.role === 'user'
-                                    ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white'
-                                    : 'bg-gradient-to-br from-brand-400 to-brand-600 text-white'
+                                ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white'
+                                : 'bg-gradient-to-br from-brand-400 to-brand-600 text-white'
                                 }`}>
                                 {msg.role === 'user' ? <User className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
                             </div>
 
                             {/* Message Bubble */}
-                            <div className={`px-5 py-3.5 max-w-[80%] rounded-2xl shadow-sm text-[15px] leading-relaxed ${msg.role === 'user'
-                                    ? 'bg-indigo-600 text-white rounded-tr-none'
-                                    : 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50 text-slate-800 dark:text-slate-200 rounded-tl-none font-medium'
+                            <div className={`px-4 md:px-5 py-3 md:py-3.5 max-w-[85%] md:max-w-[75%] rounded-2xl shadow-sm text-[15px] leading-relaxed ${msg.role === 'user'
+                                ? 'bg-indigo-600 text-white rounded-tr-none'
+                                : 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50 text-slate-800 dark:text-slate-200 rounded-tl-none font-medium'
                                 }`}>
                                 {/* Very basic markdown handling for bold/bullets locally */}
                                 <p className="whitespace-pre-wrap">{msg.content.replace(/\*\*/g, '')}</p>

@@ -20,7 +20,7 @@ function Modal({ children, onClose }) {
       />
 
       {/* Modal Content */}
-      <div className="relative bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800 rounded-3xl p-10 w-full max-w-xl shadow-2xl transition-all">
+      <div className="relative bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800 rounded-3xl p-6 md:p-10 w-full max-w-xl mx-4 shadow-2xl transition-all">
         {children}
       </div>
     </div>

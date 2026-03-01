@@ -295,7 +295,7 @@ function Pets() {
         <Card className="p-10 mb-16">
           <h2 className="text-2xl font-semibold mb-8">Add New Pet</h2>
 
-          <form onSubmit={handleAddPet} className="grid md:grid-cols-3 gap-6">
+          <form onSubmit={handleAddPet} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
             <Input name="breed" placeholder="Breed" value={form.breed} onChange={handleChange} required />
             <Input type="number" name="age" placeholder="Age" value={form.age} onChange={handleChange} required />

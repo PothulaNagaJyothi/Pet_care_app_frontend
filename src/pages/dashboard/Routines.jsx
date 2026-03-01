@@ -183,7 +183,7 @@ function Routines() {
                   </div>
                 </div>
 
-                <div className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0 ml-auto pl-9 sm:pl-0">
+                <div className="flex flex-wrap gap-2 w-full sm:w-auto mt-3 sm:mt-0 ml-auto sm:pl-0 justify-end">
                   <Button
                     variant="secondary"
                     onClick={() => openEditModal(routine)}

@@ -97,14 +97,14 @@ const CareTips = () => {
             )}
 
             {/* Categories Filter */}
-            <div className="flex overflow-x-auto pb-2 gap-2 custom-scrollbar">
+            <div className="flex flex-wrap pb-2 gap-2 custom-scrollbar">
                 {categories.map((cat) => (
                     <button
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
                         className={`whitespace-nowrap px-5 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 ${activeCategory === cat
-                                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-md transform scale-105"
-                                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
+                            ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-md transform scale-105"
+                            : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
                             }`}
                     >
                         {cat}
