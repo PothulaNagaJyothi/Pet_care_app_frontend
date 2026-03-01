@@ -7,6 +7,7 @@ import Card from "../../components/ui/Card";
 import Modal from "../../components/ui/Modal";
 import ConfirmModal from "../../components/ui/ConfirmModal";
 import { useToast } from "../../context/ToastContext";
+import { FileDown, Loader2 } from "lucide-react";
 
 function Pets() {
   const [pets, setPets] = useState([]);
@@ -26,6 +27,7 @@ function Pets() {
 
   const [editingPet, setEditingPet] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
+  const [downloadingPdfId, setDownloadingPdfId] = useState(null);
 
   const fileInputRef = useRef(null);
   const formRef = useRef(null);
@@ -150,6 +152,38 @@ function Pets() {
     }
   };
 
+  const handleExportPDF = async (petId, petName) => {
+    try {
+      setDownloadingPdfId(petId);
+      const tempApi = api; // Using our authenticated axios instance
+
+      const response = await tempApi.get(`/export/pdf/${petId}`, {
+        responseType: 'blob' // Essential for receiving binary files
+      });
+
+      // Create a Blob from the PDF Stream
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${petName.replace(/\s+/g, '_')}_Medical_Report.pdf`);
+      document.body.appendChild(link);
+      link.click();
+
+      // Cleanup
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      showToast("Medical report downloaded successfully!");
+    } catch (error) {
+      console.error("Export Error:", error);
+      showToast("Failed to generate PDF report. Check server configuration.", "error");
+    } finally {
+      setDownloadingPdfId(null);
+    }
+  };
+
   const openEditModal = (pet) => {
     setEditingPet(pet);
     setForm({
@@ -227,12 +261,26 @@ function Pets() {
                   </p>
                 </div>
 
-                <div className="flex gap-3 pt-6 border-t border-slate-100 dark:border-slate-700/50">
-                  <Button variant="secondary" onClick={() => openEditModal(pet)} className="flex-1 py-2.5">
+                <div className="flex gap-2 pt-6 border-t border-slate-100 dark:border-slate-700/50">
+                  <Button variant="secondary" onClick={() => openEditModal(pet)} className="flex-1 px-3 py-2.5 text-sm">
                     Edit
                   </Button>
 
-                  <Button variant="danger" onClick={() => setDeleteTarget(pet)} className="flex-1 py-2.5">
+                  <Button
+                    variant="outline"
+                    onClick={() => handleExportPDF(pet.id, pet.name)}
+                    disabled={downloadingPdfId === pet.id}
+                    className="flex-[1.5] px-3 py-2.5 text-sm border-brand-200 dark:border-brand-800 text-brand-600 dark:text-brand-400 hover:bg-brand-50 gap-1.5"
+                  >
+                    {downloadingPdfId === pet.id ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <FileDown className="w-4 h-4" />
+                    )}
+                    Report
+                  </Button>
+
+                  <Button variant="danger" onClick={() => setDeleteTarget(pet)} className="flex-1 px-3 py-2.5 text-sm">
                     Delete
                   </Button>
                 </div>
