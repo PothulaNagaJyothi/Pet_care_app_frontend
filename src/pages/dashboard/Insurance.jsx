@@ -147,9 +147,9 @@ function Insurance() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
+                <div className="flex flex-wrap items-center justify-between gap-3 w-full sm:w-auto mt-4 sm:mt-0">
                   <span
-                    className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${policy.claim_status === "active"
+                    className={`px-3 py-1.5 text-xs uppercase tracking-wider font-bold rounded-full border shrink-0 ${policy.claim_status === "active"
                       ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
                       : policy.claim_status === "claimed"
                         ? "bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/20"
@@ -159,11 +159,11 @@ function Insurance() {
                     {policy.claim_status}
                   </span>
 
-                  <div className="flex gap-2 ml-auto">
+                  <div className="flex gap-2 flex-1 sm:flex-none justify-end min-w-max">
                     <Button
                       variant="secondary"
                       onClick={() => openEditModal(policy)}
-                      className="py-1.5 px-3 text-sm"
+                      className="py-1.5 px-4 text-sm flex-1 sm:flex-none"
                     >
                       Edit
                     </Button>
@@ -171,7 +171,7 @@ function Insurance() {
                     <Button
                       variant="danger"
                       onClick={() => setDeleteTarget(policy)}
-                      className="py-1.5 px-3 text-sm"
+                      className="py-1.5 px-4 text-sm flex-1 sm:flex-none"
                     >
                       Delete
                     </Button>

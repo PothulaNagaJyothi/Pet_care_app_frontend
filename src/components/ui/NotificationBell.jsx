@@ -81,8 +81,8 @@ function NotificationBell() {
                     if (!isOpen) fetchNotifications(); // Refresh when opening
                 }}
                 className={`relative p-2.5 rounded-xl transition-all duration-200 ${isOpen
-                        ? "bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400"
-                        : "text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+                    ? "bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400"
+                    : "text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                     }`}
             >
                 <Bell className="w-5 h-5" />
@@ -95,7 +95,7 @@ function NotificationBell() {
 
             {/* Dropdown Card */}
             {isOpen && (
-                <div className="absolute right-0 mt-3 w-80 md:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 z-50 overflow-hidden transform opacity-100 scale-100 origin-top-right transition-all">
+                <div className="absolute right-[-10px] sm:right-0 mt-3 w-[calc(100vw-2rem)] sm:w-80 md:w-96 max-w-sm bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 z-50 overflow-hidden transform opacity-100 scale-100 origin-top-right transition-all">
 
                     {/* Header */}
                     <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">

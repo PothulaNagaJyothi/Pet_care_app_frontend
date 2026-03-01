@@ -183,11 +183,11 @@ function Routines() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 w-full sm:w-auto mt-3 sm:mt-0 ml-auto sm:pl-0 justify-end">
+                <div className="flex gap-2 w-full sm:w-auto mt-4 sm:mt-0 justify-end">
                   <Button
                     variant="secondary"
                     onClick={() => openEditModal(routine)}
-                    className="py-1.5 px-3 text-sm"
+                    className="py-1.5 px-4 text-sm flex-1 sm:flex-none"
                   >
                     Edit
                   </Button>
@@ -195,7 +195,7 @@ function Routines() {
                   <Button
                     variant="danger"
                     onClick={() => setDeleteTarget(routine)}
-                    className="py-1.5 px-3 text-sm"
+                    className="py-1.5 px-4 text-sm flex-1 sm:flex-none"
                   >
                     Delete
                   </Button>

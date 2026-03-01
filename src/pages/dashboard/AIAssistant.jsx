@@ -64,7 +64,7 @@ function AIAssistant() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto h-[calc(100vh-8rem)] flex flex-col py-4">
+        <div className="max-w-4xl mx-auto h-[calc(100vh-8rem)] flex flex-col py-4 px-3 sm:px-4 md:px-0">
             {/* Header */}
             <div className="mb-6">
                 <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-indigo-600 dark:from-brand-400 dark:to-indigo-400">
