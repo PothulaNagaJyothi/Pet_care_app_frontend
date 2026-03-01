@@ -34,6 +34,9 @@ function DashboardLayout() {
     if (location.pathname.includes("insurance")) return "Insurance";
     if (location.pathname.includes("emergency-vets")) return "Emergency Vets";
     if (location.pathname.includes("community")) return "Community";
+    if (location.pathname.includes("tips")) return "Expert Care Tips";
+    if (location.pathname.includes("nutrition")) return "Nutrition & Meals";
+    if (location.pathname.includes("settings")) return "Alerts & Settings";
     return "Dashboard Overview";
   };
 
@@ -102,6 +105,9 @@ function DashboardLayout() {
             { path: "/dashboard/insurance", label: "Insurance", icon: "🛡️" },
             { path: "/dashboard/emergency-vets", label: "Emergency Vets", icon: "🚑" },
             { path: "/dashboard/community", label: "Community", icon: "💬" },
+            { path: "/dashboard/tips", label: "Care Tips", icon: "💡" },
+            { path: "/dashboard/nutrition", label: "Nutrition", icon: "🍏" },
+            { path: "/dashboard/settings", label: "Settings", icon: "⚙️" },
           ].map((item) => (
             <NavLink
               key={item.path}

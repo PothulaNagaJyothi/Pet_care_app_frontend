@@ -2,7 +2,7 @@ import axios from "axios";
 import { supabase } from "../lib/supabase";
 
 const api = axios.create({
-  baseURL: "https://pet-care-app-backend.onrender.com/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://pet-care-app-backend.onrender.com/api",
 });
 
 api.interceptors.request.use(async (config) => {
