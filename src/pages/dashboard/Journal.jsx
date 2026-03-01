@@ -107,49 +107,7 @@ function Journal() {
     <div className="space-y-10">
       <h1 className="text-4xl font-bold">Health Journal</h1>
 
-      <Card className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">Add Entry</h2>
-
-        <form onSubmit={handleAdd} className="grid gap-6">
-          <select
-            name="pet_id"
-            value={form.pet_id}
-            onChange={handleChange}
-            required
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
-          >
-            <option value="">Select Pet</option>
-            {pets.map((pet) => (
-              <option key={pet.id} value={pet.id}>
-                {pet.name}
-              </option>
-            ))}
-          </select>
-
-          <input
-            name="title"
-            placeholder="Journal Entry Title"
-            value={form.title}
-            onChange={handleChange}
-            required
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
-          />
-
-          <textarea
-            name="description"
-            placeholder="Write out the details here..."
-            value={form.description}
-            onChange={handleChange}
-            required
-            rows={4}
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium resize-y"
-          />
-
-          <Button type="submit">Add Entry</Button>
-        </form>
-      </Card>
-
-      <Card className="p-8">
+      <Card className="p-8 mb-8">
         <h2 className="text-2xl font-semibold mb-6">Entries</h2>
 
         {entries.length === 0 ? (
@@ -196,6 +154,48 @@ function Journal() {
             ))}
           </div>
         )}
+      </Card>
+
+      <Card className="p-8">
+        <h2 className="text-2xl font-semibold mb-6">Add Entry</h2>
+
+        <form onSubmit={handleAdd} className="grid gap-6">
+          <select
+            name="pet_id"
+            value={form.pet_id}
+            onChange={handleChange}
+            required
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
+          >
+            <option value="">Select Pet</option>
+            {pets.map((pet) => (
+              <option key={pet.id} value={pet.id}>
+                {pet.name}
+              </option>
+            ))}
+          </select>
+
+          <input
+            name="title"
+            placeholder="Journal Entry Title"
+            value={form.title}
+            onChange={handleChange}
+            required
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
+          />
+
+          <textarea
+            name="description"
+            placeholder="Write out the details here..."
+            value={form.description}
+            onChange={handleChange}
+            required
+            rows={4}
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium resize-y"
+          />
+
+          <Button type="submit">Add Entry</Button>
+        </form>
       </Card>
 
       {editingEntry && (

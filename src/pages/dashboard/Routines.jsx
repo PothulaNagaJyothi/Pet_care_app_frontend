@@ -137,6 +137,75 @@ function Routines() {
     <div className="space-y-10">
       <h1 className="text-4xl font-bold">Daily Routines</h1>
 
+      {/* Routine List */}
+      <Card className="p-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">
+          Today’s Routine
+        </h2>
+
+        {routines.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-slate-500 dark:text-slate-400 text-lg">No routines added yet.</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {routines.map(routine => (
+              <div
+                key={routine.id}
+                className={`p-6 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all duration-300 ${routine.completed
+                  ? "bg-emerald-50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800/50 opacity-75 grayscale-[0.2]"
+                  : "bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 shadow-sm"
+                  }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-center p-1">
+                    <input
+                      type="checkbox"
+                      checked={routine.completed}
+                      onChange={() => toggleComplete(routine)}
+                      className="w-5 h-5 rounded border-slate-300 text-emerald-500 focus:ring-emerald-500 cursor-pointer transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <p className={`font-bold text-lg capitalize ${routine.completed ? 'text-emerald-800 dark:text-emerald-400 line-through' : 'text-slate-900 dark:text-white'}`}>
+                      {routine.type === "custom"
+                        ? routine.custom_label
+                        : routine.type}
+                    </p>
+                    <div className="flex items-center gap-3 mt-1 text-sm font-medium">
+                      <p className="text-slate-600 dark:text-slate-400">
+                        <span className="text-slate-500 mr-1">Pet:</span>{getPetName(routine.pet_id)}
+                      </p>
+                      <p className="text-slate-600 dark:text-slate-400">
+                        <span className="text-slate-500 mr-1">Time:</span>{routine.scheduled_time}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0 ml-auto pl-9 sm:pl-0">
+                  <Button
+                    variant="secondary"
+                    onClick={() => openEditModal(routine)}
+                    className="py-1.5 px-3 text-sm"
+                  >
+                    Edit
+                  </Button>
+
+                  <Button
+                    variant="danger"
+                    onClick={() => setDeleteTarget(routine)}
+                    className="py-1.5 px-3 text-sm"
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </Card>
+
       {/* Add Form */}
       <Card className="p-8">
         <h2 className="text-2xl font-semibold mb-6">
@@ -200,75 +269,6 @@ function Routines() {
           </div>
 
         </form>
-      </Card>
-
-      {/* Routine List */}
-      <Card className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">
-          Today’s Routine
-        </h2>
-
-        {routines.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-slate-500 dark:text-slate-400 text-lg">No routines added yet.</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {routines.map(routine => (
-              <div
-                key={routine.id}
-                className={`p-6 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all duration-300 ${routine.completed
-                    ? "bg-emerald-50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800/50 opacity-75 grayscale-[0.2]"
-                    : "bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 shadow-sm"
-                  }`}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center p-1">
-                    <input
-                      type="checkbox"
-                      checked={routine.completed}
-                      onChange={() => toggleComplete(routine)}
-                      className="w-5 h-5 rounded border-slate-300 text-emerald-500 focus:ring-emerald-500 cursor-pointer transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <p className={`font-bold text-lg capitalize ${routine.completed ? 'text-emerald-800 dark:text-emerald-400 line-through' : 'text-slate-900 dark:text-white'}`}>
-                      {routine.type === "custom"
-                        ? routine.custom_label
-                        : routine.type}
-                    </p>
-                    <div className="flex items-center gap-3 mt-1 text-sm font-medium">
-                      <p className="text-slate-600 dark:text-slate-400">
-                        <span className="text-slate-500 mr-1">Pet:</span>{getPetName(routine.pet_id)}
-                      </p>
-                      <p className="text-slate-600 dark:text-slate-400">
-                        <span className="text-slate-500 mr-1">Time:</span>{routine.scheduled_time}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0 ml-auto pl-9 sm:pl-0">
-                  <Button
-                    variant="secondary"
-                    onClick={() => openEditModal(routine)}
-                    className="py-1.5 px-3 text-sm"
-                  >
-                    Edit
-                  </Button>
-
-                  <Button
-                    variant="danger"
-                    onClick={() => setDeleteTarget(routine)}
-                    className="py-1.5 px-3 text-sm"
-                  >
-                    Delete
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </Card>
 
       {/* Edit Modal */}

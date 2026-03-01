@@ -96,34 +96,6 @@ function WeightLogs() {
         </select>
       </Card>
 
-      {/* Add Weight */}
-      {selectedPet && (
-        <Card className="p-8">
-          <h2 className="text-2xl font-semibold mb-6">
-            Add Weight Entry
-          </h2>
-
-          <form
-            onSubmit={handleAdd}
-            className="flex gap-4 items-center"
-          >
-            <input
-              type="number"
-              step="0.1"
-              placeholder="Weight (kg)"
-              value={weight}
-              onChange={(e) => setWeight(e.target.value)}
-              required
-              className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium flex-1 md:flex-none"
-            />
-
-            <Button type="submit">
-              Add
-            </Button>
-          </form>
-        </Card>
-      )}
-
       {/* Chart */}
       {selectedPet && weightLogs.length > 0 && (
         <Card className="p-8">
@@ -176,6 +148,34 @@ function WeightLogs() {
               ))}
             </div>
           )}
+        </Card>
+      )}
+
+      {/* Add Weight */}
+      {selectedPet && (
+        <Card className="p-8 mt-10">
+          <h2 className="text-2xl font-semibold mb-6">
+            Add Weight Entry
+          </h2>
+
+          <form
+            onSubmit={handleAdd}
+            className="flex gap-4 items-center"
+          >
+            <input
+              type="number"
+              step="0.1"
+              placeholder="Weight (kg)"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              required
+              className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium flex-1 md:flex-none"
+            />
+
+            <Button type="submit">
+              Add
+            </Button>
+          </form>
         </Card>
       )}
     </div>

@@ -113,6 +113,76 @@ function Insurance() {
     <div className="space-y-10">
       <h1 className="text-4xl font-bold">Insurance</h1>
 
+      <Card className="p-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">Policies</h2>
+
+        {policies.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-slate-500 dark:text-slate-400 text-lg">No policies added yet.</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {policies.map((policy) => (
+              <div
+                key={policy.id}
+                className="p-6 bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm hover:dark:bg-slate-800 transition-colors"
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-1">
+                    <p className="font-bold text-lg text-slate-900 dark:text-white">
+                      {policy.provider_name}
+                    </p>
+                    <span className="text-slate-500 dark:text-slate-400 text-sm font-mono bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
+                      #{policy.policy_number}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium mt-2">
+                    <p className="text-slate-600 dark:text-slate-400">
+                      <span className="text-slate-500 mr-1">Pet:</span>{getPetName(policy.pet_id)}
+                    </p>
+                    <p className="text-slate-600 dark:text-slate-400 max-w-sm truncate" title={policy.coverage_details}>
+                      <span className="text-slate-500 mr-1">Coverage:</span>{policy.coverage_details}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
+                  <span
+                    className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${policy.claim_status === "active"
+                      ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
+                      : policy.claim_status === "claimed"
+                        ? "bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/20"
+                        : "bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20"
+                      }`}
+                  >
+                    {policy.claim_status}
+                  </span>
+
+                  <div className="flex gap-2 ml-auto">
+                    <Button
+                      variant="secondary"
+                      onClick={() => openEditModal(policy)}
+                      className="py-1.5 px-3 text-sm"
+                    >
+                      Edit
+                    </Button>
+
+                    <Button
+                      variant="danger"
+                      onClick={() => setDeleteTarget(policy)}
+                      className="py-1.5 px-3 text-sm"
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </Card>
+
       <Card className="p-8">
         <h2 className="text-2xl font-semibold mb-6">Add Policy</h2>
 
@@ -174,76 +244,6 @@ function Insurance() {
             <Button type="submit">Add Policy</Button>
           </div>
         </form>
-      </Card>
-
-      <Card className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">Policies</h2>
-
-        {policies.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-slate-500 dark:text-slate-400 text-lg">No policies added yet.</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {policies.map((policy) => (
-              <div
-                key={policy.id}
-                className="p-6 bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm hover:dark:bg-slate-800 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <p className="font-bold text-lg text-slate-900 dark:text-white">
-                      {policy.provider_name}
-                    </p>
-                    <span className="text-slate-500 dark:text-slate-400 text-sm font-mono bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
-                      #{policy.policy_number}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium mt-2">
-                    <p className="text-slate-600 dark:text-slate-400">
-                      <span className="text-slate-500 mr-1">Pet:</span>{getPetName(policy.pet_id)}
-                    </p>
-                    <p className="text-slate-600 dark:text-slate-400 max-w-sm truncate" title={policy.coverage_details}>
-                      <span className="text-slate-500 mr-1">Coverage:</span>{policy.coverage_details}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
-                  <span
-                    className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${policy.claim_status === "active"
-                        ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
-                        : policy.claim_status === "claimed"
-                          ? "bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/20"
-                          : "bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20"
-                      }`}
-                  >
-                    {policy.claim_status}
-                  </span>
-
-                  <div className="flex gap-2 ml-auto">
-                    <Button
-                      variant="secondary"
-                      onClick={() => openEditModal(policy)}
-                      className="py-1.5 px-3 text-sm"
-                    >
-                      Edit
-                    </Button>
-
-                    <Button
-                      variant="danger"
-                      onClick={() => setDeleteTarget(policy)}
-                      className="py-1.5 px-3 text-sm"
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </Card>
 
       {editingPolicy && (

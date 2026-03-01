@@ -173,6 +173,75 @@ function Pets() {
     <div>
       <h1 className="text-4xl font-bold mb-12">My Pets</h1>
 
+      {/* Pets Section */}
+      {loading ? (
+        <div className="flex justify-center items-center py-24">
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-500 border-t-transparent"></div>
+        </div>
+      ) : pets.length === 0 ? (
+        <div className="text-center py-24 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
+          <div className="text-6xl mb-6">🐕</div>
+          <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">No pets added yet</h3>
+          <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto">Add your furry friends to start managing their health, vaccinations, and appointments.</p>
+          <Button onClick={scrollToForm} className="shadow-lg shadow-brand-500/30">Add Your First Pet</Button>
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+          {pets.map((pet) => (
+            <Card
+              key={pet.id}
+              className="overflow-hidden p-0 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group border-0 shadow-md dark:shadow-none bg-white dark:bg-slate-800/80"
+            >
+              {pet.image_url ? (
+                <div className="w-full h-56 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+                  <img
+                    src={pet.image_url}
+                    alt={pet.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              ) : (
+                <div className="w-full h-56 bg-gradient-to-br from-brand-100 to-brand-50 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-6xl shadow-inner">
+                  {pet.gender === 'Female' ? '🐈' : '🐕'}
+                </div>
+              )}
+
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white truncate pr-2">
+                    {pet.name}
+                  </h3>
+                  <span className="shrink-0 inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-0.5 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                    {pet.age} yrs
+                  </span>
+                </div>
+
+                <div className="space-y-2 mb-8">
+                  <p className="text-slate-600 dark:text-slate-400 font-medium flex items-center gap-2">
+                    <span className="text-slate-400 dark:text-slate-500 shrink-0">Tags:</span>
+                    <span className="truncate">{pet.breed} • {pet.gender}</span>
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-400 font-medium flex items-center gap-2">
+                    <span className="text-slate-400 dark:text-slate-500 shrink-0">Weight:</span>
+                    {pet.weight} kg
+                  </p>
+                </div>
+
+                <div className="flex gap-3 pt-6 border-t border-slate-100 dark:border-slate-700/50">
+                  <Button variant="secondary" onClick={() => openEditModal(pet)} className="flex-1 py-2.5">
+                    Edit
+                  </Button>
+
+                  <Button variant="danger" onClick={() => setDeleteTarget(pet)} className="flex-1 py-2.5">
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+
       {/* Add Pet */}
       <div ref={formRef}>
         <Card className="p-10 mb-16">
@@ -231,75 +300,6 @@ function Pets() {
           </form>
         </Card>
       </div>
-
-      {/* Pets Section */}
-      {loading ? (
-        <div className="flex justify-center items-center py-24">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-500 border-t-transparent"></div>
-        </div>
-      ) : pets.length === 0 ? (
-        <div className="text-center py-24 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
-          <div className="text-6xl mb-6">🐕</div>
-          <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">No pets added yet</h3>
-          <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto">Add your furry friends to start managing their health, vaccinations, and appointments.</p>
-          <Button onClick={scrollToForm} className="shadow-lg shadow-brand-500/30">Add Your First Pet</Button>
-        </div>
-      ) : (
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {pets.map((pet) => (
-            <Card
-              key={pet.id}
-              className="overflow-hidden p-0 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group border-0 shadow-md dark:shadow-none bg-white dark:bg-slate-800/80"
-            >
-              {pet.image_url ? (
-                <div className="w-full h-56 bg-slate-100 dark:bg-slate-900 overflow-hidden">
-                  <img
-                    src={pet.image_url}
-                    alt={pet.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              ) : (
-                <div className="w-full h-56 bg-gradient-to-br from-brand-100 to-brand-50 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center text-6xl shadow-inner">
-                  {pet.gender === 'Female' ? '🐈' : '🐕'}
-                </div>
-              )}
-
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white truncate pr-2">
-                    {pet.name}
-                  </h3>
-                  <span className="shrink-0 inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-0.5 text-xs font-semibold text-slate-800 dark:text-slate-200">
-                    {pet.age} yrs
-                  </span>
-                </div>
-
-                <div className="space-y-2 mb-8">
-                  <p className="text-slate-600 dark:text-slate-400 font-medium flex items-center gap-2">
-                    <span className="text-slate-400 dark:text-slate-500 shrink-0">Tags:</span>
-                    <span className="truncate">{pet.breed} • {pet.gender}</span>
-                  </p>
-                  <p className="text-slate-600 dark:text-slate-400 font-medium flex items-center gap-2">
-                    <span className="text-slate-400 dark:text-slate-500 shrink-0">Weight:</span>
-                    {pet.weight} kg
-                  </p>
-                </div>
-
-                <div className="flex gap-3 pt-6 border-t border-slate-100 dark:border-slate-700/50">
-                  <Button variant="secondary" onClick={() => openEditModal(pet)} className="flex-1 py-2.5">
-                    Edit
-                  </Button>
-
-                  <Button variant="danger" onClick={() => setDeleteTarget(pet)} className="flex-1 py-2.5">
-                    Delete
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      )}
 
       {/* Edit Modal */}
       {editingPet && (

@@ -98,62 +98,8 @@ function EmergencyVets() {
     <div className="space-y-10">
       <h1 className="text-4xl font-bold">Emergency Vets</h1>
 
-      {/* Add Form */}
-      <Card className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">
-          Add Emergency Vet
-        </h2>
-
-        <form
-          onSubmit={handleAdd}
-          className="grid md:grid-cols-2 gap-6"
-        >
-          <input
-            name="name"
-            placeholder="Clinic Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
-          />
-
-          <input
-            name="city"
-            placeholder="City"
-            value={form.city}
-            onChange={handleChange}
-            required
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
-          />
-
-          <input
-            name="phone"
-            placeholder="Phone Number"
-            value={form.phone}
-            onChange={handleChange}
-            required
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
-          />
-
-          <input
-            name="address"
-            placeholder="Full Address"
-            value={form.address}
-            onChange={handleChange}
-            required
-            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium md:col-span-2"
-          />
-
-          <div className="md:col-span-2">
-            <Button type="submit">
-              Add Vet
-            </Button>
-          </div>
-        </form>
-      </Card>
-
       {/* List */}
-      <Card className="p-8">
+      <Card className="p-8 mb-8">
         <h2 className="text-2xl font-semibold mb-6">
           Available Emergency Clinics
         </h2>
@@ -211,6 +157,60 @@ function EmergencyVets() {
             ))}
           </div>
         )}
+      </Card>
+
+      {/* Add Form */}
+      <Card className="p-8">
+        <h2 className="text-2xl font-semibold mb-6">
+          Add Emergency Vet
+        </h2>
+
+        <form
+          onSubmit={handleAdd}
+          className="grid md:grid-cols-2 gap-6"
+        >
+          <input
+            name="name"
+            placeholder="Clinic Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
+          />
+
+          <input
+            name="city"
+            placeholder="City"
+            value={form.city}
+            onChange={handleChange}
+            required
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
+          />
+
+          <input
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium"
+          />
+
+          <input
+            name="address"
+            placeholder="Full Address"
+            value={form.address}
+            onChange={handleChange}
+            required
+            className="p-3.5 bg-slate-50 border border-slate-200 text-slate-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all font-medium md:col-span-2"
+          />
+
+          <div className="md:col-span-2">
+            <Button type="submit">
+              Add Vet
+            </Button>
+          </div>
+        </form>
       </Card>
 
       {/* Edit Modal */}

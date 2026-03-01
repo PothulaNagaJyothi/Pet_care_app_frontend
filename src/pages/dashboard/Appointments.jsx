@@ -115,6 +115,101 @@ function Appointments() {
     <div className="space-y-10">
       <h1 className="text-4xl font-bold">Appointments</h1>
 
+      {/* Appointment List */}
+      <Card className="p-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">
+          Appointment Records
+        </h2>
+
+        {loading ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
+          </div>
+        ) : appointments.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-slate-500 dark:text-slate-400 text-lg">No appointments scheduled.</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {appointments.map((app) => {
+              const date = new Date(app.appointment_date);
+              const isPast =
+                app.status === "scheduled" && date < today;
+
+              return (
+                <div
+                  key={app.id}
+                  className={`p-6 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors ${isPast
+                    ? "bg-rose-50 dark:bg-rose-900/10 border-rose-200 dark:border-rose-800/50"
+                    : "bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 hover:dark:bg-slate-800 shadow-sm"
+                    }`}
+                >
+                  <div>
+                    <div className="flex items-center gap-3 mb-1">
+                      <p className="font-bold text-lg text-slate-900 dark:text-white">
+                        {getPetName(app.pet_id)}
+                      </p>
+                      {app.notes && (
+                        <span className="text-slate-500 dark:text-slate-400 text-sm italic border-l border-slate-300 dark:border-slate-600 pl-3">
+                          {app.notes}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium">
+                      <p className={`${isPast ? 'text-rose-600 dark:text-rose-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
+                        <span className="text-slate-500 mr-1">Time:</span>
+                        {date.toLocaleString(undefined, {
+                          weekday: 'short',
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
+                    <span
+                      className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${app.status === "completed"
+                        ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
+                        : app.status === "cancelled"
+                          ? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700"
+                          : isPast
+                            ? "bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20"
+                            : "bg-brand-50 dark:bg-brand-accent/10 text-brand-600 dark:text-brand-accent border-brand-200 dark:border-brand-accent/20"
+                        }`}
+                    >
+                      {app.status}
+                    </span>
+
+                    <div className="flex gap-2 ml-auto">
+                      <Button
+                        variant="secondary"
+                        onClick={() => openEditModal(app)}
+                        className="py-1.5 px-3 text-sm"
+                      >
+                        Edit
+                      </Button>
+
+                      <Button
+                        variant="danger"
+                        onClick={() => setDeleteTarget(app)}
+                        className="py-1.5 px-3 text-sm"
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </Card>
+
       {/* Add Appointment */}
       <Card className="p-8">
         <h2 className="text-2xl font-semibold mb-6">
@@ -170,101 +265,6 @@ function Appointments() {
             <Button type="submit">Add Appointment</Button>
           </div>
         </form>
-      </Card>
-
-      {/* Appointment List */}
-      <Card className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">
-          Appointment Records
-        </h2>
-
-        {loading ? (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
-          </div>
-        ) : appointments.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-slate-500 dark:text-slate-400 text-lg">No appointments scheduled.</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {appointments.map((app) => {
-              const date = new Date(app.appointment_date);
-              const isPast =
-                app.status === "scheduled" && date < today;
-
-              return (
-                <div
-                  key={app.id}
-                  className={`p-6 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors ${isPast
-                      ? "bg-rose-50 dark:bg-rose-900/10 border-rose-200 dark:border-rose-800/50"
-                      : "bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 hover:dark:bg-slate-800 shadow-sm"
-                    }`}
-                >
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <p className="font-bold text-lg text-slate-900 dark:text-white">
-                        {getPetName(app.pet_id)}
-                      </p>
-                      {app.notes && (
-                        <span className="text-slate-500 dark:text-slate-400 text-sm italic border-l border-slate-300 dark:border-slate-600 pl-3">
-                          {app.notes}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium">
-                      <p className={`${isPast ? 'text-rose-600 dark:text-rose-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
-                        <span className="text-slate-500 mr-1">Time:</span>
-                        {date.toLocaleString(undefined, {
-                          weekday: 'short',
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
-                    <span
-                      className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${app.status === "completed"
-                          ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
-                          : app.status === "cancelled"
-                            ? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700"
-                            : isPast
-                              ? "bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20"
-                              : "bg-brand-50 dark:bg-brand-accent/10 text-brand-600 dark:text-brand-accent border-brand-200 dark:border-brand-accent/20"
-                        }`}
-                    >
-                      {app.status}
-                    </span>
-
-                    <div className="flex gap-2 ml-auto">
-                      <Button
-                        variant="secondary"
-                        onClick={() => openEditModal(app)}
-                        className="py-1.5 px-3 text-sm"
-                      >
-                        Edit
-                      </Button>
-
-                      <Button
-                        variant="danger"
-                        onClick={() => setDeleteTarget(app)}
-                        className="py-1.5 px-3 text-sm"
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
       </Card>
 
       {/* Edit Modal */}

@@ -120,6 +120,96 @@ function Medications() {
     <div className="space-y-10">
       <h1 className="text-4xl font-bold">Medications</h1>
 
+      {/* Medication List */}
+      <Card className="p-8 mb-8">
+        <h2 className="text-2xl font-semibold mb-6">
+          Medication Records
+        </h2>
+
+        {loading ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
+          </div>
+        ) : medications.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-slate-500 dark:text-slate-400 text-lg">No medications found.</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {medications.map((med) => {
+              const dueDate = new Date(med.due_date);
+              const isOverdue =
+                med.status === "ongoing" && dueDate < today;
+
+              return (
+                <div
+                  key={med.id}
+                  className={`p-6 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors ${isOverdue
+                    ? "bg-rose-50 dark:bg-rose-900/10 border-rose-200 dark:border-rose-800/50"
+                    : "bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 hover:dark:bg-slate-800 shadow-sm"
+                    }`}
+                >
+                  <div>
+                    <div className="flex items-center gap-3 mb-1">
+                      <p className="font-bold text-lg text-slate-900 dark:text-white">
+                        {med.medication_name}
+                      </p>
+                      <span className="text-brand-600 dark:text-brand-400 font-semibold bg-brand-50 dark:bg-brand-500/10 px-2 py-0.5 rounded text-sm">
+                        {med.dosage}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium mt-1">
+                      <p className="text-slate-600 dark:text-slate-400">
+                        <span className="text-slate-500 mr-1">Pet:</span>
+                        {getPetName(med.pet_id)}
+                      </p>
+                      <p className={`${isOverdue ? 'text-rose-600 dark:text-rose-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
+                        <span className="text-slate-500 mr-1">Due:</span>
+                        {new Date(med.due_date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
+                    <span
+                      className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${med.status === "completed"
+                        ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
+                        : med.status === "stopped"
+                          ? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700"
+                          : isOverdue
+                            ? "bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20"
+                            : "bg-brand-50 dark:bg-brand-accent/10 text-brand-600 dark:text-brand-accent border-brand-200 dark:border-brand-accent/20"
+                        }`}
+                    >
+                      {med.status}
+                    </span>
+
+                    <div className="flex gap-2 ml-auto">
+                      <Button
+                        variant="secondary"
+                        onClick={() => openEditModal(med)}
+                        className="py-1.5 px-3 text-sm"
+                      >
+                        Edit
+                      </Button>
+
+                      <Button
+                        variant="danger"
+                        onClick={() => setDeleteTarget(med)}
+                        className="py-1.5 px-3 text-sm"
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </Card>
+
       {/* Add Medication */}
       <Card className="p-8">
         <h2 className="text-2xl font-semibold mb-6">
@@ -186,96 +276,6 @@ function Medications() {
             <Button type="submit">Add Medication</Button>
           </div>
         </form>
-      </Card>
-
-      {/* Medication List */}
-      <Card className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">
-          Medication Records
-        </h2>
-
-        {loading ? (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
-          </div>
-        ) : medications.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-slate-500 dark:text-slate-400 text-lg">No medications found.</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {medications.map((med) => {
-              const dueDate = new Date(med.due_date);
-              const isOverdue =
-                med.status === "ongoing" && dueDate < today;
-
-              return (
-                <div
-                  key={med.id}
-                  className={`p-6 rounded-2xl border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors ${isOverdue
-                      ? "bg-rose-50 dark:bg-rose-900/10 border-rose-200 dark:border-rose-800/50"
-                      : "bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700/50 hover:dark:bg-slate-800 shadow-sm"
-                    }`}
-                >
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <p className="font-bold text-lg text-slate-900 dark:text-white">
-                        {med.medication_name}
-                      </p>
-                      <span className="text-brand-600 dark:text-brand-400 font-semibold bg-brand-50 dark:bg-brand-500/10 px-2 py-0.5 rounded text-sm">
-                        {med.dosage}
-                      </span>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium mt-1">
-                      <p className="text-slate-600 dark:text-slate-400">
-                        <span className="text-slate-500 mr-1">Pet:</span>
-                        {getPetName(med.pet_id)}
-                      </p>
-                      <p className={`${isOverdue ? 'text-rose-600 dark:text-rose-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
-                        <span className="text-slate-500 mr-1">Due:</span>
-                        {new Date(med.due_date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
-                    <span
-                      className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded-full border ${med.status === "completed"
-                          ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/20"
-                          : med.status === "stopped"
-                            ? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700"
-                            : isOverdue
-                              ? "bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20"
-                              : "bg-brand-50 dark:bg-brand-accent/10 text-brand-600 dark:text-brand-accent border-brand-200 dark:border-brand-accent/20"
-                        }`}
-                    >
-                      {med.status}
-                    </span>
-
-                    <div className="flex gap-2 ml-auto">
-                      <Button
-                        variant="secondary"
-                        onClick={() => openEditModal(med)}
-                        className="py-1.5 px-3 text-sm"
-                      >
-                        Edit
-                      </Button>
-
-                      <Button
-                        variant="danger"
-                        onClick={() => setDeleteTarget(med)}
-                        className="py-1.5 px-3 text-sm"
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
       </Card>
 
       {/* Edit Modal */}
