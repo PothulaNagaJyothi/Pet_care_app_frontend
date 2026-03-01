@@ -36,6 +36,7 @@ function DashboardLayout() {
     if (location.pathname.includes("community")) return "Community";
     if (location.pathname.includes("tips")) return "Expert Care Tips";
     if (location.pathname.includes("nutrition")) return "Nutrition & Meals";
+    if (location.pathname.includes("ai-assistant")) return "Virtual AI Assistant";
     if (location.pathname.includes("settings")) return "Alerts & Settings";
     return "Dashboard Overview";
   };
@@ -107,6 +108,7 @@ function DashboardLayout() {
             { path: "/dashboard/community", label: "Community", icon: "💬" },
             { path: "/dashboard/tips", label: "Care Tips", icon: "💡" },
             { path: "/dashboard/nutrition", label: "Nutrition", icon: "🍏" },
+            { path: "/dashboard/ai-assistant", label: "AI Vet", icon: "🤖" },
             { path: "/dashboard/settings", label: "Settings", icon: "⚙️" },
           ].map((item) => (
             <NavLink

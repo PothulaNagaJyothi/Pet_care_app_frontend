@@ -21,6 +21,7 @@ const Community = lazy(() => import("./pages/dashboard/Community"));
 const CareTips = lazy(() => import("./pages/dashboard/CareTips"));
 const Nutrition = lazy(() => import("./pages/dashboard/Nutrition"));
 const Settings = lazy(() => import("./pages/dashboard/Settings"));
+const AIAssistant = lazy(() => import("./pages/dashboard/AIAssistant"));
 
 // Simple Fallback Loader
 const Loader = () => (
@@ -60,6 +61,7 @@ function App() {
           <Route path="community" element={<Community />} />
           <Route path="tips" element={<CareTips />} />
           <Route path="nutrition" element={<Nutrition />} />
+          <Route path="ai-assistant" element={<AIAssistant />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
