@@ -94,7 +94,7 @@ function AIAssistant() {
                             </div>
 
                             {/* Message Bubble */}
-                            <div className={`px-4 md:px-5 py-3 md:py-3.5 max-w-[85%] md:max-w-[75%] rounded-2xl shadow-sm text-[15px] leading-relaxed ${msg.role === 'user'
+                            <div className={`px-4 md:px-5 py-3 md:py-3.5 max-w-[calc(100%-3.5rem)] sm:max-w-[80%] md:max-w-[75%] rounded-2xl shadow-sm text-[15px] leading-relaxed break-words ${msg.role === 'user'
                                 ? 'bg-indigo-600 text-white rounded-tr-none'
                                 : 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50 text-slate-800 dark:text-slate-200 rounded-tl-none font-medium'
                                 }`}>
@@ -120,7 +120,7 @@ function AIAssistant() {
                 </div>
 
                 {/* Input Area */}
-                <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+                <div className="p-4 bg-transparent border-t border-slate-200/50 dark:border-slate-800/50">
                     <form
                         onSubmit={handleSubmit}
                         className="flex items-end gap-3 max-w-[800px] mx-auto relative group"
