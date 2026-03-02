@@ -48,10 +48,8 @@ function NotificationBell() {
         try {
             const res = await api.put(`/notifications/${id}/read`);
             if (res.data.success) {
-                // Instantly update local UI state mapping
-                setNotifications(prev => prev.map(n =>
-                    n.id === id ? { ...n, is_read: true } : n
-                ));
+                // Instantly remove from local UI state
+                setNotifications(prev => prev.filter(n => n.id !== id));
             }
         } catch (error) {
             console.error("Failed to mark as read:", error);
@@ -63,7 +61,7 @@ function NotificationBell() {
         try {
             const res = await api.put("/notifications/read-all");
             if (res.data.success) {
-                setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
+                setNotifications([]);
                 showToast("All notifications cleared", "success");
             }
         } catch (error) {
