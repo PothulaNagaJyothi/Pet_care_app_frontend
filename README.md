@@ -103,9 +103,8 @@ If applicable, use the following credentials to explore the dashboard immediatel
   
 - **Dashboard Overview**
   ![Dashboard](./src/assets/Dashboard.png)
-  
-- **Mobile Responsive View**
+
   ![Mobile View](./src/assets/Mobile%20View.png)
 
 ## 🎥 Video Walkthrough Link
-- **Demonstration Video:** [Watch on Google Drive](https://drive.google.com/file/d/1eMggSyv_z6qB3FXJJXAwbMMK6Sg2Towi/view?usp=sharing)
+- **Demonstration Video:** [Watch on Google Drive](https://drive.google.com/file/d/1b-KH6Ij42KFQkhyRsoRE6uNJyc_tR5S6/view?usp=sharing)
